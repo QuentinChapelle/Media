@@ -13,6 +13,25 @@ use Doctrine\ORM\Mapping as ORM;
 class Album
 {
     /**
+     * @ORM\Column(type="string")
+     *
+     */
+    private $image;
+
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+
+    /**
      * @ORM\OneToMany(targetEntity="Commentaire", mappedBy="album")
      */
     private $commentaires;

@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class AlbumType extends AbstractType
 {
@@ -30,6 +31,7 @@ class AlbumType extends AbstractType
                         'CD' => 'CD',
                         'Cassette' => 'Cassette',
                     )))
+                ->add('image', FileType::class, array('label' => 'image'))
         ;
     }
     

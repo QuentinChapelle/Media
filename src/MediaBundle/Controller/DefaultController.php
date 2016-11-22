@@ -29,11 +29,12 @@ class DefaultController extends Controller
      * Finds and displays a album entity.
      *
      * @Route("/{id}", name="album_show")
-     * @Method("GET")
+     * @Method({"GET", "POST"})
      */
     public function showAction(Album $album, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
+        $commentaires = $em->getRepository('MediaBundle:Commentaire')->findby(array('album' => 'album_id'));
         $commentaires = $em->getRepository('MediaBundle:Commentaire')->findAll();
 
         $commentaire = new Commentaire();
@@ -45,15 +46,17 @@ class DefaultController extends Controller
             $em->persist($commentaire);
             $em->flush($commentaire);
 
-            return $this->redirectToRoute('commentaire_show', array('id' => $commentaire->getId()));
+
         }
 
+        var_dump($commentaires);
         return $this->render('MediaBundle:Default:album.html.twig', array(
             'album' => $album,
             'commentaires' => $commentaires,
             'commentaire' => $commentaire,
             'form' => $form->createView(),
         ));
+
     }
 
 }
