@@ -13,6 +13,11 @@ use Doctrine\ORM\Mapping as ORM;
 class Album
 {
     /**
+     * @ORM\OneToMany(targetEntity="Commentaire", mappedBy="album")
+     */
+    private $commentaires;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
